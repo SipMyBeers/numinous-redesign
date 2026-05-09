@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-numinous-black: #0a0a0a;
+  --color-numinous-dark: #111111;
+  --color-numinous-charcoal: #1a1a1a;
+  --color-numinous-steel: #2a2a2a;
+  --color-numinous-ember: #ff6b35;
+  --color-numinous-fire: #ff4500;
+  --color-numinous-gold: #d4a843;
+  --color-numinous-copper: #b87333;
+  --color-numinous-ice: #e0f0ff;
+  --color-numinous-mist: #a0b4c8;
+  --font-heading: "Urbanist", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-numinous-black);
+    color: white;
+  }
+
+  body {
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--color-numinous-ember);
+    color: black;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-numinous-ember), var(--color-numinous-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-ember {
+    box-shadow: 0 0 40px rgba(255, 107, 53, 0.3), 0 0 80px rgba(255, 107, 53, 0.1);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 40px rgba(255, 107, 53, 0.5), 0 0 80px rgba(255, 107, 53, 0.2);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 107, 53, 0.2);
+  }
+
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 60%, transparent);
+  }
+
+  .mask-fade-t {
+    mask-image: linear-gradient(to top, black 60%, transparent);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-numinous-black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-numinous-steel);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-numinous-ember);
+}

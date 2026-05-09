@@ -1,0 +1,7 @@
+{"type":"server-started","port":53160,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:53160","screen_dir":"/Users/beers/numinous-redesign/.superpowers/brainstorm/54080-1774510341/content","state_dir":"/Users/beers/numinous-redesign/.superpowers/brainstorm/54080-1774510341/state"}
+{"type":"screen-added","file":"/Users/beers/numinous-redesign/.superpowers/brainstorm/54080-1774510341/content/color-palette.html"}
+{"type":"screen-added","file":"/Users/beers/numinous-redesign/.superpowers/brainstorm/54080-1774510341/content/color-palette-v2.html"}
+{"type":"screen-added","file":"/Users/beers/numinous-redesign/.superpowers/brainstorm/54080-1774510341/content/waiting.html"}
+{"type":"screen-added","file":"/Users/beers/numinous-redesign/.superpowers/brainstorm/54080-1774510341/content/full-design.html"}
+{"type":"screen-added","file":"/Users/beers/numinous-redesign/.superpowers/brainstorm/54080-1774510341/content/waiting-2.html"}
+{"type":"server-stopped","reason":"idle timeout"}

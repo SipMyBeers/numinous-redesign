@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-200 -200 1400 1400" fill="none">
+  <!-- Numinous Designs logo — many concentric triangles -->
+  <!-- Extra-large outer layers ensure corners of any viewport are covered -->
+
+  <!-- Mega outer layers — extend way beyond normal bounds to cover top corners -->
+  <polygon points="500,-500 1500,1250 -500,1250" stroke="white" stroke-width="22" stroke-linejoin="round" fill="none" opacity="0.1"/>
+  <polygon points="500,-400 1400,1200 -400,1200" stroke="white" stroke-width="21" stroke-linejoin="round" fill="none" opacity="0.12"/>
+  <polygon points="500,-300 1300,1150 -300,1150" stroke="white" stroke-width="20" stroke-linejoin="round" fill="none" opacity="0.14"/>
+  <polygon points="500,-200 1200,1100 -200,1100" stroke="white" stroke-width="19" stroke-linejoin="round" fill="none" opacity="0.16"/>
+  <polygon points="500,-100 1100,1050 -100,1050" stroke="white" stroke-width="18" stroke-linejoin="round" fill="none" opacity="0.18"/>
+  <polygon points="500,-10 1010,1000 -10,1000" stroke="white" stroke-width="18" stroke-linejoin="round" fill="none" opacity="0.2"/>
+
+  <!-- Standard outer layers -->
+  <polygon points="500,50 960,950 40,950" stroke="white" stroke-width="17" stroke-linejoin="round" fill="none" opacity="0.22"/>
+  <polygon points="500,95 920,910 80,910" stroke="white" stroke-width="16" stroke-linejoin="round" fill="none" opacity="0.25"/>
+  <polygon points="500,140 880,870 120,870" stroke="white" stroke-width="16" stroke-linejoin="round" fill="none" opacity="0.28"/>
+  <polygon points="500,185 840,830 160,830" stroke="white" stroke-width="15" stroke-linejoin="round" fill="none" opacity="0.3"/>
+  <polygon points="500,230 800,790 200,790" stroke="white" stroke-width="15" stroke-linejoin="round" fill="none" opacity="0.33"/>
+  <polygon points="500,275 760,750 240,750" stroke="white" stroke-width="14" stroke-linejoin="round" fill="none" opacity="0.36"/>
+  <polygon points="500,315 722,715 278,715" stroke="white" stroke-width="14" stroke-linejoin="round" fill="none" opacity="0.39"/>
+  <polygon points="500,352 687,682 313,682" stroke="white" stroke-width="13" stroke-linejoin="round" fill="none" opacity="0.42"/>
+  <polygon points="500,387 654,651 346,651" stroke="white" stroke-width="13" stroke-linejoin="round" fill="none" opacity="0.45"/>
+  <polygon points="500,418 624,623 376,623" stroke="white" stroke-width="12" stroke-linejoin="round" fill="none" opacity="0.48"/>
+
+  <!-- Mid layers — getting brighter -->
+  <polygon points="500,446 597,598 403,598" stroke="white" stroke-width="11" stroke-linejoin="round" fill="none" opacity="0.52"/>
+  <polygon points="500,470 573,576 427,576" stroke="white" stroke-width="10" stroke-linejoin="round" fill="none" opacity="0.56"/>
+  <polygon points="500,491 552,557 448,557" stroke="white" stroke-width="10" stroke-linejoin="round" fill="none" opacity="0.6"/>
+  <polygon points="500,509 534,541 466,541" stroke="white" stroke-width="9" stroke-linejoin="round" fill="none" opacity="0.65"/>
+  <polygon points="500,524 520,528 480,528" stroke="white" stroke-width="8" stroke-linejoin="round" fill="none" opacity="0.7"/>
+
+  <!-- Inner layers — tight, bright -->
+  <polygon points="500,448 570,570 430,570" stroke="white" stroke-width="7" stroke-linejoin="round" fill="none" opacity="0.35"/>
+  <polygon points="500,462 558,558 442,558" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none" opacity="0.38"/>
+  <polygon points="500,475 547,547 453,547" stroke="white" stroke-width="5.5" stroke-linejoin="round" fill="none" opacity="0.42"/>
+  <polygon points="500,486 538,538 462,538" stroke="white" stroke-width="5" stroke-linejoin="round" fill="none" opacity="0.46"/>
+  <polygon points="500,496 530,530 470,530" stroke="white" stroke-width="4.5" stroke-linejoin="round" fill="none" opacity="0.5"/>
+  <polygon points="500,504 524,524 476,524" stroke="white" stroke-width="4" stroke-linejoin="round" fill="none" opacity="0.55"/>
+  <polygon points="500,510 519,519 481,519" stroke="white" stroke-width="3.5" stroke-linejoin="round" fill="none" opacity="0.6"/>
+  <polygon points="500,515 515,515 485,515" stroke="white" stroke-width="3" stroke-linejoin="round" fill="none" opacity="0.65"/>
+  <polygon points="500,518 512,512 488,512" stroke="white" stroke-width="2.5" stroke-linejoin="round" fill="none" opacity="0.7"/>
+  <polygon points="500,520 509,510 491,510" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none" opacity="0.75"/>
+  <polygon points="500,522 507,508 493,508" stroke="white" stroke-width="1.5" stroke-linejoin="round" fill="none" opacity="0.8"/>
+</svg>

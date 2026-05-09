@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" fill="none">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0.5 0 0.3 0 0.08
+                0.1 0 0.3 0 0.02
+                0.7 0.1 1 0 0.15
+                0 0 0 1 0" result="purpleBlur"/>
+      <feMerge>
+        <feMergeNode in="purpleBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!--
+    Numinous Designs logo — concentric triangles.
+    All triangles share the same center and apex angle.
+    Center = (500, 420). Apex up. Proportions matched to original logo.
+
+    Each triangle defined by a "size" parameter s:
+      apex:  (500, 420 - s*0.78)
+      left:  (500 - s, 420 + s*0.52)
+      right: (500 + s, 420 + s*0.52)
+    This gives a consistent ~58° apex angle matching the logo.
+  -->
+
+  <!-- s=750 --> <polygon points="500,-165 1250,810 -250,810" stroke="white" stroke-width="4.5" stroke-linejoin="round" fill="none" opacity="0.03"/>
+  <!-- s=700 --> <polygon points="500,-126 1200,784 -200,784" stroke="white" stroke-width="4.5" stroke-linejoin="round" fill="none" opacity="0.04"/>
+  <!-- s=650 --> <polygon points="500,-87 1150,758 -150,758" stroke="white" stroke-width="4.5" stroke-linejoin="round" fill="none" opacity="0.05"/>
+  <!-- s=600 --> <polygon points="500,-48 1100,732 -100,732" stroke="white" stroke-width="4.5" stroke-linejoin="round" fill="none" opacity="0.06"/>
+  <!-- s=550 --> <polygon points="500,-9 1050,706 -50,706" stroke="white" stroke-width="4.5" stroke-linejoin="round" fill="none" opacity="0.07"/>
+  <!-- s=500 --> <polygon points="500,30 1000,680 0,680" stroke="white" stroke-width="4.5" stroke-linejoin="round" fill="none" opacity="0.09"/>
+  <!-- s=460 --> <polygon points="500,61 960,659 40,659" stroke="white" stroke-width="4.2" stroke-linejoin="round" fill="none" opacity="0.11"/>
+  <!-- s=420 --> <polygon points="500,92 920,638 80,638" stroke="white" stroke-width="4.2" stroke-linejoin="round" fill="none" opacity="0.14"/>
+  <!-- s=380 --> <polygon points="500,124 880,618 120,618" stroke="white" stroke-width="4.0" stroke-linejoin="round" fill="none" opacity="0.17"/>
+  <!-- s=340 --> <polygon points="500,155 840,597 160,597" stroke="white" stroke-width="4.0" stroke-linejoin="round" fill="none" opacity="0.21"/>
+  <!-- s=300 --> <polygon points="500,186 800,576 200,576" stroke="white" stroke-width="3.8" stroke-linejoin="round" fill="none" opacity="0.26" filter="url(#glow)"/>
+  <!-- s=265 --> <polygon points="500,213 765,558 235,558" stroke="white" stroke-width="3.6" stroke-linejoin="round" fill="none" opacity="0.31" filter="url(#glow)"/>
+  <!-- s=230 --> <polygon points="500,241 730,540 270,540" stroke="white" stroke-width="3.4" stroke-linejoin="round" fill="none" opacity="0.37" filter="url(#glow)"/>
+  <!-- s=195 --> <polygon points="500,268 695,521 305,521" stroke="white" stroke-width="3.2" stroke-linejoin="round" fill="none" opacity="0.43" filter="url(#glow)"/>
+  <!-- s=165 --> <polygon points="500,291 665,506 335,506" stroke="white" stroke-width="3.0" stroke-linejoin="round" fill="none" opacity="0.50" filter="url(#glow)"/>
+  <!-- s=135 --> <polygon points="500,315 635,490 365,490" stroke="white" stroke-width="2.8" stroke-linejoin="round" fill="none" opacity="0.58" filter="url(#glow)"/>
+  <!-- s=108 --> <polygon points="500,336 608,476 392,476" stroke="white" stroke-width="2.5" stroke-linejoin="round" fill="none" opacity="0.66" filter="url(#glow)"/>
+  <!-- s=82 --> <polygon points="500,356 582,463 418,463" stroke="white" stroke-width="2.2" stroke-linejoin="round" fill="none" opacity="0.74" filter="url(#glow)"/>
+  <!-- s=58 --> <polygon points="500,375 558,450 442,450" stroke="white" stroke-width="1.8" stroke-linejoin="round" fill="none" opacity="0.82" filter="url(#glow)"/>
+  <!-- s=36 --> <polygon points="500,392 536,439 464,439" stroke="white" stroke-width="1.5" stroke-linejoin="round" fill="none" opacity="0.90" filter="url(#glow)"/>
+</svg>
