@@ -8,8 +8,6 @@ const locations = [
   "Santa Cruz, CA (HQ)",
   "New York, NY",
   "Las Vegas, NV",
-  "Denver, CO",
-  "Portland, OR",
 ];
 
 export default function Footer() {
@@ -27,7 +25,7 @@ export default function Footer() {
               alt="Numinous Designs"
               width={160}
               height={36}
-              className="h-7 w-auto brightness-110 mb-6"
+              className="h-9 w-auto brightness-110 mb-6"
             />
             <p className="text-sm text-white/40 leading-relaxed">
               Forging art, structure, and story into experience.
@@ -94,7 +92,7 @@ export default function Footer() {
             reserved.
           </p>
           <motion.a
-            href="https://www.linkedin.com/company/numinous-designs"
+            href="https://www.linkedin.com/company/numinous-designs-llc/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Numinous Designs on LinkedIn (opens in new tab)"

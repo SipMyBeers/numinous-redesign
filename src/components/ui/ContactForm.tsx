@@ -73,35 +73,28 @@ export default function ContactForm() {
     setLoading(true);
     setToast(null);
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+    const subject = `New Inquiry: ${form.projectType || "General"} — ${form.name}`;
+    const bodyLines = [
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      form.phone ? `Phone: ${form.phone}` : null,
+      form.projectType ? `Project Type: ${form.projectType}` : null,
+      form.budget ? `Budget: ${form.budget}` : null,
+      form.timeline ? `Timeline: ${form.timeline}` : null,
+      "",
+      "Message:",
+      form.message,
+    ].filter(Boolean);
+    const mailto = `mailto:ell@numinousdesigns.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
 
-      const data = await res.json();
+    window.location.href = mailto;
 
-      if (!res.ok) {
-        setToast({ type: "error", message: data.error || "Something went wrong." });
-      } else {
-        setToast({ type: "success", message: data.message });
-        setForm({
-          name: "",
-          email: "",
-          phone: "",
-          projectType: "",
-          budget: "",
-          timeline: "",
-          message: "",
-        });
-      }
-    } catch {
-      setToast({ type: "error", message: "Network error. Please try again." });
-    } finally {
-      setLoading(false);
-      setTimeout(() => setToast(null), 6000);
-    }
+    setToast({
+      type: "success",
+      message: "Opening your email app to send. If nothing happens, email ell@numinousdesigns.com directly.",
+    });
+    setLoading(false);
+    setTimeout(() => setToast(null), 8000);
   }
 
   const inputBase =

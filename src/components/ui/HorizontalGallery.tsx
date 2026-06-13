@@ -28,6 +28,14 @@ export default function HorizontalGallery({ items, onItemClick }: HorizontalGall
   useLayoutEffect(() => {
     if (!sectionRef.current || !trackRef.current) return;
 
+    // Skip pinned horizontal scroll on touch / small viewports — the pin +
+    // mobile address-bar resize causes severe jitter. Use native overflow-x there.
+    const isMobile =
+      typeof window !== "undefined" &&
+      (window.matchMedia("(max-width: 768px)").matches ||
+        window.matchMedia("(pointer: coarse)").matches);
+    if (isMobile) return;
+
     const ctx = gsap.context(() => {
       const track = trackRef.current!;
       const scrollWidth = track.scrollWidth - window.innerWidth;
@@ -40,7 +48,12 @@ export default function HorizontalGallery({ items, onItemClick }: HorizontalGall
           start: "top top",
           end: () => `+=${scrollWidth}`,
           pin: true,
-          pinType: "transform",
+          // Default "fixed" pinning lets the compositor hold the section still
+          // (zero per-frame JS). Forcing "transform" here made GSAP counter-
+          // translate against native scroll every frame, which jitters on
+          // high-refresh (ProMotion) displays. No transformed ancestor / smooth
+          // scroller is present, so fixed pinning is correct.
+          anticipatePin: 1,
           scrub: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
@@ -56,7 +69,11 @@ export default function HorizontalGallery({ items, onItemClick }: HorizontalGall
   }, [items]);
 
   return (
-    <section ref={sectionRef} className="relative h-screen overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative md:h-screen md:overflow-hidden overflow-x-auto overflow-y-hidden snap-x snap-mandatory"
+      style={{ WebkitOverflowScrolling: "touch" }}
+    >
       {/* Progress bar */}
       <div className="absolute top-0 left-0 right-0 z-20 h-px bg-white/5">
         <div
@@ -84,13 +101,13 @@ export default function HorizontalGallery({ items, onItemClick }: HorizontalGall
       {/* Track */}
       <div
         ref={trackRef}
-        className="flex items-center h-full gap-8 px-[10vw] will-change-transform"
-        style={{ width: `${items.length * 45 + 20}vw` }}
+        className="flex items-center md:h-full h-[80vh] gap-4 md:gap-8 px-6 md:px-[10vw] will-change-transform"
+        style={{ width: "max-content" }}
       >
         {items.map((item, i) => (
           <div
             key={i}
-            className="gallery-card relative flex-shrink-0 w-[40vw] h-[70vh] cursor-pointer group"
+            className="gallery-card relative flex-shrink-0 w-[78vw] md:w-[40vw] h-[68vh] md:h-[70vh] cursor-pointer group snap-center"
             onClick={() => onItemClick?.(i)}
           >
             <div className="relative w-full h-full overflow-hidden rounded-lg">

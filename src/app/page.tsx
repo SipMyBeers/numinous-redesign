@@ -127,9 +127,10 @@ function PortalText({ scrollYProgress }: { scrollYProgress: MotionValue<number> 
   return (
     <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold leading-tight">
       {portalWordsData.map((word, i) => {
-        // Spread the reveal across 0.55 → 0.88 of scroll
-        const start = 0.55 + (i / portalWordsData.length) * 0.33;
-        const end = start + 0.02;
+        // Reveal compressed to 0.45 → 0.62 so all text completes well
+        // before the hero section exits, leaving ~38% of scroll to read.
+        const start = 0.45 + (i / portalWordsData.length) * 0.15;
+        const end = start + 0.04;
         return (
           <motion.span
             key={i}
@@ -200,12 +201,12 @@ const forgeEmbers = Array.from({ length: 20 }, (_, i) => {
 });
 
 const galleryItems = [
-  { name: "The Portal", image: "/images/portfolio/the-portal.jpg", subtitle: "Stainless Steel · 2017", id: "the-portal" },
-  { name: "Female Twin", image: "/images/portfolio/female-twin.jpg", subtitle: "Stainless Steel · 2009", id: "female-twin" },
+  { name: "The Portal", image: "/images/portfolio/the-portal.jpg", subtitle: "Stainless Steel · 2011", id: "the-portal" },
+  { name: "The Twins", image: "/images/portfolio/female-twin.jpg", subtitle: "Stainless Steel · 2003", id: "the-twins" },
   { name: "Echeveria", image: "/images/portfolio/echeveria.jpg", subtitle: "Steel, Bronze, Copper · 2015", id: "echeveria" },
   { name: "Le Attrata", image: "/images/portfolio/le-attrata.jpg", subtitle: "Mixed Media Installation", id: "le-attrata" },
   { name: "Divi", image: "/images/portfolio/divi.jpg", subtitle: "Mixed Media Sculpture", id: "divi" },
-  { name: "Fata", image: "/images/portfolio/fata.jpg", subtitle: "Kinetic Fire Sculpture", id: "fata" },
+  { name: "Fata", image: "/images/portfolio/fata.jpg", subtitle: "Kinetic Sculpture", id: "fata" },
   { name: "Gilly", image: "/images/portfolio/gilly.jpg", subtitle: "Mixed Media Sculpture", id: "gilly" },
   { name: "Springwater", image: "/images/portfolio/springwater.jpg", subtitle: "Mixed Media Installation", id: "springwater" },
 ];
@@ -376,7 +377,7 @@ export default function Home() {
                   <div className="mt-10">
                     <p className="text-base text-white/40 max-w-xl mx-auto">
                       A creative fabrication & design studio headquartered in Santa Cruz, California,
-                      with satellite locations in NYC, Las Vegas, Denver, and Portland.
+                      with satellite locations in New York and Las Vegas.
                     </p>
                   </div>
                 </div>
@@ -398,9 +399,22 @@ export default function Home() {
                 <br />
                 That Move You
               </h1>
-              <p className="text-sm md:text-base lg:text-lg text-white/50 max-w-lg mx-auto mb-12 leading-relaxed drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)]">
-                An experience that makes you feel awed yet attracted, excited yet fascinated.
-              </p>
+              <div className="mb-12 max-w-lg mx-auto drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)]">
+                <div className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1 mb-2">
+                  <span className="text-xl md:text-2xl font-heading font-semibold text-white/90 tracking-tight">
+                    nu&middot;mi&middot;nous
+                  </span>
+                  <span className="text-xs md:text-sm text-numinous-ember/80 italic tracking-wide">
+                    | ˈn(y)oo&middot;mə&middot;nəs |
+                  </span>
+                  <span className="text-[10px] md:text-xs text-white/40 italic">
+                    adj.
+                  </span>
+                </div>
+                <p className="text-sm md:text-base lg:text-lg text-white/55 leading-relaxed">
+                  an experience that makes you feel awed yet attracted, excited yet fascinated.
+                </p>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center">
                 <MagneticButton
                   href="/portfolio"
@@ -673,7 +687,7 @@ export default function Home() {
 
             {/* Pair 2: Workshop fabrication → Finished Portal */}
             <ScrollReveal delay={0.2}>
-              <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="hidden md:flex flex-col md:flex-row items-center gap-6">
                 <div className="relative flex-1 aspect-[4/3] overflow-hidden rounded-lg border border-white/10 group">
                   <Image
                     src="/images/about/workshop.jpeg"
@@ -775,42 +789,27 @@ export default function Home() {
 
           {/* Enemy preview cards */}
           <ScrollReveal delay={0.2}>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 max-w-3xl mx-auto mb-14">
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3 max-w-3xl mx-auto mb-14">
               {[
-                { name: "Echeveria", element: "Earth", color: "#22c55e", emoji: "🌿", desc: "Crystal rosette" },
-                { name: "Fata", element: "Fire", color: "#ff6b35", emoji: "🔥", desc: "Flame spinner" },
-                { name: "Gilly", element: "Shadow", color: "#a855f7", emoji: "🦇", desc: "Shadow wings" },
-                { name: "Divi", element: "Arcane", color: "#f43f5e", emoji: "💎", desc: "Arcane diamond" },
-                { name: "Portal", element: "Void", color: "#60b5ff", emoji: "🌀", desc: "BOSS" },
+                { name: "Echeveria", element: "Earth", color: "#22c55e", emoji: "🌿" },
+                { name: "Fata", element: "Fire", color: "#ff6b35", emoji: "🔥" },
+                { name: "Gilly", element: "Shadow", color: "#a855f7", emoji: "🦇" },
+                { name: "Divi", element: "Arcane", color: "#f43f5e", emoji: "💎" },
+                { name: "Portal", element: "Void", color: "#60b5ff", emoji: "🌀" },
               ].map((enemy, i) => (
                 <motion.div
                   key={enemy.name}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + i * 0.08 }}
+                  transition={{ delay: 0.2 + i * 0.05 }}
                   viewport={{ once: true }}
-                  className="relative p-4 border border-white/10 rounded-lg bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300 group"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 border rounded-full bg-white/[0.02] hover:bg-white/[0.05] transition-colors duration-300"
+                  style={{ borderColor: `${enemy.color}30` }}
                 >
-                  <div
-                    className="w-10 h-10 mx-auto mb-2 rounded border flex items-center justify-center text-lg font-mono"
-                    style={{
-                      borderColor: `${enemy.color}40`,
-                      boxShadow: `0 0 12px ${enemy.color}20`,
-                      background: `${enemy.color}10`,
-                    }}
-                  >
-                    <span style={{ filter: "saturate(1.5)" }}>{enemy.emoji}</span>
-                  </div>
-                  <p className="text-xs font-mono font-bold" style={{ color: enemy.color }}>
+                  <span className="text-sm leading-none" style={{ filter: "saturate(1.5)" }}>{enemy.emoji}</span>
+                  <span className="text-[11px] font-mono font-bold" style={{ color: enemy.color }}>
                     {enemy.name}
-                  </p>
-                  <p className="text-[10px] text-white/30 mt-0.5">{enemy.desc}</p>
-                  <p
-                    className="text-[9px] tracking-wider uppercase mt-1"
-                    style={{ color: `${enemy.color}80` }}
-                  >
-                    {enemy.element}
-                  </p>
+                  </span>
                 </motion.div>
               ))}
             </div>

@@ -45,7 +45,7 @@ export default function MagneticButton({
       <Tag
         href={href}
         onClick={onClick}
-        className={className}
+        className={`inline-block ${className}`}
       >
         {children}
       </Tag>

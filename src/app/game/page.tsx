@@ -367,7 +367,7 @@ const ENEMY_DEFS: EnemyDef[] = [
     pixelScale: 3, hitRadius: 14, shootRate: 0.006, desc: "Lightning conduit — rapid-fire bolts",
   },
   {
-    name: "Female Twin", element: "Steel", color: "#a1a1aa", points: 350, hp: 3,
+    name: "The Twins", element: "Steel", color: "#a1a1aa", points: 350, hp: 3,
     sprites: [TWIN_A, TWIN_B], palette: TWIN_PAL,
     bulletPalette: { 1: "#3f3f46", 2: "#d4d4d8" },
     pixelScale: 3, hitRadius: 14, shootRate: 0.004, desc: "Mirrored steel form — high armor",
@@ -1356,25 +1356,24 @@ export default function GamePage() {
               Protect the forge at all costs.
             </p>
 
-            {/* Enemy bestiary cards with pixel art */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 max-w-2xl mx-auto">
+            {/* Enemy bestiary — compact row format */}
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2 mb-8 max-w-2xl mx-auto">
               {ENEMY_DEFS.filter(d => d.name !== "The Portal").map((def, i) => (
                 <div
                   key={def.name}
-                  className="border rounded-lg p-3 flex flex-col items-center gap-2"
+                  className="border rounded p-1.5 flex flex-col items-center gap-1"
                   style={{ borderColor: `${def.color}30`, background: `${def.color}08` }}
                 >
                   {cardImages[i] && (
                     <img
                       src={cardImages[i]}
                       alt={def.name}
-                      className="w-14 h-14 object-contain"
+                      className="w-8 h-8 object-contain"
                       style={{ imageRendering: "pixelated" }}
                     />
                   )}
-                  <span className="text-[11px] font-mono font-bold" style={{ color: def.color }}>{def.name}</span>
-                  <span className="text-[9px] font-mono text-white/30 uppercase">{def.element}</span>
-                  <span className="text-[9px] font-mono text-white/20">{def.points} PTS · HP {def.hp}</span>
+                  <span className="text-[9px] font-mono font-bold leading-tight" style={{ color: def.color }}>{def.name}</span>
+                  <span className="text-[8px] font-mono text-white/30">{def.points}P · HP{def.hp}</span>
                 </div>
               ))}
             </div>

@@ -13,17 +13,8 @@ const PlanetScene = dynamic(
   { ssr: false }
 );
 
-const SculptureViewer = dynamic(
-  () => import("@/components/three/SculptureViewer"),
-  { ssr: false }
-);
-
-const categories = ["All", ...Array.from(new Set(pieces.map((p) => p.category)))];
-
 export default function PortfolioPage() {
-  const [filter, setFilter] = useState("All");
   const [selected, setSelected] = useState<(typeof pieces)[0] | null>(null);
-  const [show3D, setShow3D] = useState(false);
 
   // Auto-open lightbox if piece query param is present
   useEffect(() => {
@@ -34,9 +25,6 @@ export default function PortfolioPage() {
       if (found) setSelected(found);
     }
   }, []);
-
-  const filtered =
-    filter === "All" ? pieces : pieces.filter((p) => p.category === filter);
 
   return (
     <>
@@ -62,25 +50,6 @@ export default function PortfolioPage() {
               transformation.
             </p>
           </ScrollReveal>
-
-          {/* Filter */}
-          <ScrollReveal delay={0.3}>
-            <div className="flex gap-4 mt-10 flex-wrap">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setFilter(cat)}
-                  className={`px-5 py-2 text-xs tracking-widest uppercase border transition-all duration-300 ${
-                    filter === cat
-                      ? "border-numinous-ember text-numinous-ember bg-numinous-ember/10"
-                      : "border-white/10 text-white/40 hover:border-white/30 hover:text-white/70"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </ScrollReveal>
         </section>
 
         {/* Grid */}
@@ -90,7 +59,7 @@ export default function PortfolioPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             <AnimatePresence mode="popLayout">
-              {filtered.map((piece, i) => (
+              {pieces.map((piece, i) => (
                 <motion.div
                   key={piece.id}
                   layout
@@ -193,20 +162,25 @@ export default function PortfolioPage() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8"
+              className="relative max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-8"
             >
+              <button
+                onClick={() => setSelected(null)}
+                aria-label="Close"
+                className="absolute -top-2 -right-2 md:-top-4 md:-right-4 z-10 w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-numinous-charcoal/90 border border-white/15 text-white/70 hover:text-numinous-ember hover:border-numinous-ember transition-colors duration-200 backdrop-blur-sm"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 3L13 13M13 3L3 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
               <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-numinous-charcoal">
-                {show3D && selected.model ? (
-                  <SculptureViewer modelUrl={selected.model} className="absolute inset-0" />
-                ) : (
-                  <Image
-                    src={selected.image}
-                    alt={selected.name}
-                    fill
-                    className="object-cover"
-                    sizes="50vw"
-                  />
-                )}
+                <Image
+                  src={selected.image}
+                  alt={selected.name}
+                  fill
+                  className="object-cover"
+                  sizes="50vw"
+                />
               </div>
               <div className="flex flex-col justify-center">
                 <p className="text-[10px] tracking-[0.3em] uppercase text-numinous-ember mb-3">
@@ -218,7 +192,7 @@ export default function PortfolioPage() {
                 <p className="text-white/50 leading-relaxed mb-6">
                   {selected.description}
                 </p>
-                <div className="flex gap-6 text-sm text-white/30 mb-6">
+                <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/30 mb-4">
                   <span>
                     <strong className="text-white/60">Material:</strong>{" "}
                     {selected.material}
@@ -229,36 +203,21 @@ export default function PortfolioPage() {
                       {selected.year}
                     </span>
                   )}
+                  {selected.dimensions && (
+                    <span>
+                      <strong className="text-white/60">Dimensions:</strong>{" "}
+                      {selected.dimensions}
+                    </span>
+                  )}
                 </div>
-
-                {/* 3D / Photo toggle */}
-                {selected.model && (
-                  <div className="flex gap-2 mb-6">
-                    <button
-                      onClick={() => setShow3D(false)}
-                      className={`px-4 py-2 text-xs tracking-widest uppercase border transition-all duration-300 ${
-                        !show3D
-                          ? "border-numinous-ember text-numinous-ember bg-numinous-ember/10"
-                          : "border-white/10 text-white/40 hover:border-white/30"
-                      }`}
-                    >
-                      Photo
-                    </button>
-                    <button
-                      onClick={() => setShow3D(true)}
-                      className={`px-4 py-2 text-xs tracking-widest uppercase border transition-all duration-300 ${
-                        show3D
-                          ? "border-numinous-ember text-numinous-ember bg-numinous-ember/10"
-                          : "border-white/10 text-white/40 hover:border-white/30"
-                      }`}
-                    >
-                      3D View
-                    </button>
-                  </div>
+                {selected.availability && (
+                  <p className="text-xs tracking-widest uppercase text-numinous-ember mb-6">
+                    {selected.availability}
+                  </p>
                 )}
 
                 <button
-                  onClick={() => { setSelected(null); setShow3D(false); }}
+                  onClick={() => setSelected(null)}
                   className="self-start px-6 py-2 border border-white/20 text-white/60 text-sm tracking-widest uppercase hover:border-numinous-ember hover:text-numinous-ember transition-all duration-300"
                 >
                   Close

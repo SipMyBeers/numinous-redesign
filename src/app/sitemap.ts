@@ -1,19 +1,10 @@
 import { MetadataRoute } from "next";
+import { pieces as portfolioPieces } from "./portfolio/pieces";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://numinousdesigns.com";
 
-  const pieces = [
-    "female-twin",
-    "the-portal",
-    "et",
-    "gilly",
-    "le-attrata",
-    "divi",
-    "springwater",
-    "echeveria",
-    "fata",
-  ];
+  const pieces = portfolioPieces.map((p) => p.id);
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {

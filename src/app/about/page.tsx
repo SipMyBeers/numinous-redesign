@@ -28,26 +28,6 @@ const team = [
     bio: "Created Dragons of Eden and Satan's Calliope for Burning Man. Mechanical engineer and fire sculptor in equal measure.",
   },
   {
-    name: "Jason Gronlund",
-    role: "Fine Artist & Technical Designer",
-    image: "/images/team/jason-gronlund.jpg",
-    bio: "20+ years of large-scale fabrication. Creator of Temple of Masks. Fine artist and master builder.",
-  },
-  {
-    name: "Dallas Swindle",
-    role: "Portland Lead",
-    location: "Portland, OR",
-    image: "/images/team/dallas-swindle.png",
-    bio: "Master builder and technical designer with 20+ years collaborating on large-scale installations.",
-  },
-  {
-    name: "Corey Silverman",
-    role: "Denver Lead",
-    location: "Denver, CO",
-    image: "/images/team/corey-silverman.png",
-    bio: "Alfred University graduate (1998). Glassblowing artist and co-owner of Prism Glassworks.",
-  },
-  {
     name: "Jason Davoli",
     role: "New York Lead",
     location: "New York, NY",
@@ -55,11 +35,10 @@ const team = [
     bio: "Alfred University trained master fabricator. Studied under sculptor Albert Paley. Founder of JDavoliDesign Inc.",
   },
   {
-    name: "Boris Kostov",
-    role: "Las Vegas Lead",
-    location: "Las Vegas, NV",
-    image: "/images/team/boris-kostov.png",
-    bio: "Classically trained designer and sculptor exploring light, fire, and unseen universal energies as artistic mediums.",
+    name: "Dion Shattuck-Baker",
+    role: "Lead Apprentice",
+    image: "/images/team/dion-shattuck-baker.jpg",
+    bio: "Lead apprentice at the Santa Cruz studio, training under the team across fabrication, finishing, and installation.",
   },
 ];
 
@@ -67,8 +46,6 @@ const locations = [
   { city: "Santa Cruz", state: "CA", type: "Headquarters" },
   { city: "New York", state: "NY", type: "Satellite" },
   { city: "Las Vegas", state: "NV", type: "Satellite" },
-  { city: "Denver", state: "CO", type: "Satellite" },
-  { city: "Portland", state: "OR", type: "Satellite" },
 ];
 
 export default function AboutPage() {
@@ -140,7 +117,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Featured Video — Fata Morgana Kinetic Sculpture by Orion Fredericks */}
+        {/* Featured Video — hidden pending updated Vimeo URL from client */}
+        {false && (
         <section className="max-w-5xl mx-auto px-6 py-20">
           <ScrollReveal>
             <p className="text-xs tracking-[0.4em] uppercase text-numinous-ember mb-4">
@@ -173,6 +151,7 @@ export default function AboutPage() {
             </p>
           </ScrollReveal>
         </section>
+        )}
 
 
         {/* Full Team */}
@@ -186,16 +165,20 @@ export default function AboutPage() {
             </h2>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {team.map((member, i) => (
-              <ScrollReveal key={member.name} delay={i * 0.08}>
-                <GlowCard className="overflow-hidden h-full">
+              <ScrollReveal
+                key={member.name}
+                delay={i * 0.08}
+                className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]"
+              >
+                <GlowCard className="group overflow-hidden h-full">
                   <div className="relative aspect-[3/4] overflow-hidden">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover"
+                      className="object-cover grayscale contrast-[1.05] transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-numinous-black via-transparent to-transparent" />
@@ -234,7 +217,7 @@ export default function AboutPage() {
               </h2>
             </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {locations.map((loc, i) => (
                 <ScrollReveal key={loc.city} delay={i * 0.1}>
                   <GlowCard className="p-6 text-center">
