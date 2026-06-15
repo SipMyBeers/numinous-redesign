@@ -26,6 +26,53 @@ export default function PortfolioPage() {
     }
   }, []);
 
+  const sculptures = pieces.filter((p) => p.category !== "Functional Design");
+  const functional = pieces.filter((p) => p.category === "Functional Design");
+
+  const renderCard = (piece: (typeof pieces)[number], i: number) => (
+    <motion.div
+      key={piece.id}
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.4, delay: i * 0.05 }}
+    >
+      <GlowCard className="group cursor-pointer">
+        <div
+          onClick={() => setSelected(piece)}
+          className="relative aspect-[4/5] overflow-hidden"
+        >
+          <Image
+            src={piece.image}
+            alt={piece.name}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-numinous-black via-numinous-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
+          {/* Info overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-numinous-ember mb-2">
+              {piece.category}
+            </p>
+            <h3 className="text-xl font-heading font-semibold mb-1">
+              {piece.name}
+            </h3>
+            <p className="text-sm text-white/40">
+              {piece.material}
+              {piece.year && ` · ${piece.year}`}
+            </p>
+          </div>
+
+          {/* Hover line */}
+          <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-numinous-ember transition-all duration-500 group-hover:w-full" />
+        </div>
+      </GlowCard>
+    </motion.div>
+  );
+
   return (
     <>
       <PlanetScene />
@@ -52,59 +99,52 @@ export default function PortfolioPage() {
           </ScrollReveal>
         </section>
 
-        {/* Grid */}
+        {/* Grid — Sculptures & Installations */}
         <section className="max-w-7xl mx-auto px-6">
           <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            <AnimatePresence mode="popLayout">
-              {pieces.map((piece, i) => (
-                <motion.div
-                  key={piece.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                >
-                  <GlowCard className="group cursor-pointer">
-                    <div
-                      onClick={() => setSelected(piece)}
-                      className="relative aspect-[4/5] overflow-hidden"
-                    >
-                      <Image
-                        src={piece.image}
-                        alt={piece.name}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-numinous-black via-numinous-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-
-                      {/* Info overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                        <p className="text-[10px] tracking-[0.3em] uppercase text-numinous-ember mb-2">
-                          {piece.category}
-                        </p>
-                        <h3 className="text-xl font-heading font-semibold mb-1">
-                          {piece.name}
-                        </h3>
-                        <p className="text-sm text-white/40">
-                          {piece.material}
-                          {piece.year && ` · ${piece.year}`}
-                        </p>
-                      </div>
-
-                      {/* Hover line */}
-                      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-numinous-ember transition-all duration-500 group-hover:w-full" />
-                    </div>
-                  </GlowCard>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+            {sculptures.map((piece, i) => renderCard(piece, i))}
           </motion.div>
         </section>
+
+        {/* ===== Section break: Functional Design (Jason Davoli) ===== */}
+        {functional.length > 0 && (
+          <>
+            <section className="max-w-7xl mx-auto px-6 mt-32 mb-14">
+              <ScrollReveal>
+                <div className="flex items-center gap-5">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent to-numinous-ember/40" />
+                  <p className="text-[11px] tracking-[0.45em] uppercase text-numinous-ember whitespace-nowrap">
+                    Functional Design
+                  </p>
+                  <div className="h-px flex-1 bg-gradient-to-l from-transparent to-numinous-ember/40" />
+                </div>
+              </ScrollReveal>
+              <ScrollReveal delay={0.1}>
+                <h2 className="mt-8 text-3xl md:text-5xl font-heading font-bold text-center">
+                  Furniture &amp; Fabrication
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={0.15}>
+                <p className="mt-4 text-base text-white/45 max-w-2xl mx-auto text-center leading-relaxed">
+                  Custom furniture and architectural metalwork by Jason Davoli of
+                  JDavoliDesign — our New York lead.
+                </p>
+              </ScrollReveal>
+            </section>
+
+            <section className="max-w-7xl mx-auto px-6">
+              <motion.div
+                layout
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {functional.map((piece, i) => renderCard(piece, i))}
+              </motion.div>
+            </section>
+          </>
+        )}
 
         {/* Client & Partner Logos */}
         <section className="max-w-7xl mx-auto px-6 mt-20">
