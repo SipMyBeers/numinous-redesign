@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "Services | Numinous Designs",
   description:
     "From concept design and 3D modeling to precision metal fabrication, consulting, and event production — Numinous Designs brings bold visions to life.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 export default function ServicesLayout({

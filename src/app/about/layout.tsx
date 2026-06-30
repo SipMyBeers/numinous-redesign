@@ -4,6 +4,9 @@ export const metadata: Metadata = {
   title: "About | Numinous Designs",
   description:
     "Meet the team behind Numinous Designs — artists, engineers, and fabricators headquartered in Santa Cruz, CA with satellite studios across the U.S.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutLayout({

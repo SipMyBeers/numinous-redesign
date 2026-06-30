@@ -88,6 +88,7 @@ export default function ShowcasePage() {
 
   return (
     <div style={{ margin: 0, padding: 0, width: "100vw", height: "100vh", overflow: "hidden", position: "relative", zIndex: 100 }}>
+      <h1 className="sr-only">Numinous Designs — WebGL Showcase</h1>
       <p style={{
         position: "absolute", top: 20, left: 20, zIndex: 999,
         color: "lime", fontSize: 24, fontFamily: "monospace",

@@ -19,9 +19,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${found.name} | Numinous Designs`,
     description: found.description,
+    alternates: {
+      canonical: `/portfolio/${found.id}`,
+    },
     openGraph: {
       title: `${found.name} | Numinous Designs`,
       description: found.description,
+      url: `/portfolio/${found.id}`,
+      siteName: "Numinous Designs",
+      type: "article",
       images: [found.image],
     },
   };
